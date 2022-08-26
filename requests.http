@@ -31,7 +31,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwN
 {
   "sport_id": 1,
   "location_id": 1,
-
+  "year": 2022,
+  "month": 8,
+  "day": 26,
+  "hour": 17,
+  "minute": 15
 }
 
 ###
