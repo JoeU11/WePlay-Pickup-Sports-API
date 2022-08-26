@@ -29,6 +29,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwNzR9.-dgyT-uymk2KOVFQg_DwummElFgyt31TESpbY1tUEvQ
 
 {
+  "sport_id": 1,
+  "location_id": 1,
 
 }
 
