@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
   def index
+    @events = Event.all
+    render template: "events/index"
   end
 
-  def create
+  def create # add automatic sign-up for creator
     if current_user
       time = DateTime.new(params[:year], params[:month], params[:day], params[:hour], params[:minute])
       p time

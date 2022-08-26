@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   post "/sessions" => "sessions#create"
 
   post "/events" => "events#create"
+
+  get "/events" => "events#index"
+
+  post "/event_participants" => "event_participants#create"
 end

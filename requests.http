@@ -2,8 +2,8 @@ post http://localhost:3000/users.json
 Content-Type: application/json
 
 {
-  "name": "Joe",
-  "email": "joe@joe.com",
+  "name": "Fred",
+  "email": "fred@fred.com",
   "password": "password",
   "password_confirmation": "password"
 }
@@ -13,13 +13,13 @@ post http://localhost:3000/sessions.json
 Content-Type: application/json
 
 {
-  "email": "joe@joe.com",
+  "email": "fred@fred.com",
   "password": "password"
 }
 
 
 ###
-
+get http://localhost:3000/events.json
 
 
 
@@ -39,3 +39,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwN
 }
 
 ###
+post http://localhost:3000/event_participants.json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwNzR9.-dgyT-uymk2KOVFQg_DwummElFgyt31TESpbY1tUEvQ
+
+{
+  "event_id": 1
+}
