@@ -3,6 +3,6 @@
     id: event.id,
     sport: event.sport,
     location: event.location,
-    time: event.time
+    time: event.readable_time
   }
 end

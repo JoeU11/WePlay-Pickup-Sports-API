@@ -14,7 +14,7 @@ class EventsController < ApplicationController
       event_participant.save
       render json: event
     else
-      render json: {message: "you must be logged in to create an event"} #add error code here
+      render json: {message: "you must be logged in to create an event"}, status: :unauthorized
     end
   end
 end
