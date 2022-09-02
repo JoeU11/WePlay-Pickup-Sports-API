@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get "/events" => "events#index"
 
   post "/event_participants" => "event_participants#create"
+
+  get "/locations" => "locations#index"
 end

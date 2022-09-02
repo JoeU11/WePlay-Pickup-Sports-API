@@ -46,3 +46,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwN
 {
   "event_id": 1
 }
+
+###
+get http://localhost:3000/locations.json
