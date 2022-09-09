@@ -22,21 +22,38 @@ Content-Type: application/json
 get http://localhost:3000/events.json
 
 
+###
+get http://localhost:3000/events/1.json
+
+###
+delete http://localhost:3000/events/218.json
 
 ###
 post http://localhost:3000/events.json
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwNzR9.-dgyT-uymk2KOVFQg_DwummElFgyt31TESpbY1tUEvQ
 
-{
-  "sport_id": 1,
-  "location_id": 2,
-  "year": 2022,
-  "month": 9,
-  "day": 5,
-  "hour": 15,
-  "minute": 30
-}
+## Time will not work: replaced with conversion of frontend time format
+# {
+#   "sport_id": 1,
+#   "location_id": 2,
+#   "year": 2022,
+#   "month": 9,
+#   "day": 5,
+#   "hour": 15,
+#   "minute": 30
+# } 
+
+###
+patch http://localhost:3000/events/217.json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NjI4MjczNDN9.55JJPBsKhLbkHpahA6VEGVZZE8lNBBOUSTIX_dyJDTQ
+
+## Time will not work: replaced with conversion of frontend time format
+# {
+#   "sport_id": 3,
+#   "location_id": 1
+# }
 
 ###
 post http://localhost:3000/event_participants.json
@@ -49,3 +66,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NjE2MjQwN
 
 ###
 get http://localhost:3000/locations.json
+
+
+###
+get http://localhost:3000/event_participants.json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NjIyMjY5NjJ9.4uzrdoDDY-aMsixBiFwcQ5BX2dzR30eW-ovU6AXF8VI
+
+
+###
+delete http://localhost:3000/event_participants/1.json

@@ -9,4 +9,12 @@ class Event < ApplicationRecord
   def readable_time
     return   time.strftime("%b %e, %l:%M %p")
   end
+
+  def get_event_participant(current_user)
+    if current_user
+      return event_participants.find_by(user_id: current_user.id)
+    else
+      return nil
+    end
+  end
 end

@@ -3,6 +3,8 @@
     id: event.id,
     sport: event.sport,
     location: event.location,
-    time: event.readable_time
+    time: event.readable_time,
+    attending: event.users.include?(@current_user),
+    event_participant: event.get_event_participant(@current_user)
   }
 end
