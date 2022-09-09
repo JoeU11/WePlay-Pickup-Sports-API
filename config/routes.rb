@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get "/locations" => "locations#index"
 
+  post "/locations" => "locations#create"
+
   get "/event_participants" => "event_participants#index"
   
   delete "/event_participants/:id" => "event_participants#destroy"
