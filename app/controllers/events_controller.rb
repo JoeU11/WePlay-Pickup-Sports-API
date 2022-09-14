@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   def index
     if params[:myEvents]
-      @events = current_user.events
+      @events = current_user.events.where('time > ?', DateTime.now)
       @current_user = current_user
     else
-      @events = Event.all
+      @events = Event.all.where('time > ?', DateTime.now)
       @current_user = current_user
     end
     render template: "events/index"
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
           render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
         end
       end
-      
+
     else
       render json: { errors: ["you must be logged in to create an event"]}, status: :unauthorized 
     end
