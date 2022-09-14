@@ -1,7 +1,12 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
-    @current_user = current_user
+    if params[:myEvents]
+      @events = current_user.events
+      @current_user = current_user
+    else
+      @events = Event.all
+      @current_user = current_user
+    end
     render template: "events/index"
   end
 
@@ -15,26 +20,25 @@ class EventsController < ApplicationController
     if current_user
       if !params[:time]
         render json: {errors: ["you must select a time"]}, status: :bad_request
-      end
-    elsif current_user
-      date = params[:time]
-      date = date.chop
-      date = date.tr('-T:.', ',')
-      date = date.split(",")
-      time = DateTime.new(date[0].to_i, date[1].to_i, date[2].to_i, date[3].to_i, date[4].to_i, date[5].to_i, date[6].to_i)
-
-      p time
-      event = Event.new(sport_id: params[:sport_id], location_id: params[:location_id], time: time, user_id: current_user.id)
       
-      if event.save
-        event_participant = EventParticipant.new(user_id: current_user.id, event_id: event.id)
-        event_participant.save
-        render json: event
       else
-        render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
+        date = params[:time]
+        date = date.chop
+        date = date.tr('-T:.', ',')
+        date = date.split(",")
+        time = DateTime.new(date[0].to_i, date[1].to_i, date[2].to_i, date[3].to_i, date[4].to_i, date[5].to_i, date[6].to_i)
+
+        p time
+        event = Event.new(sport_id: params[:sport_id], location_id: params[:location_id], time: time, user_id: current_user.id)
+        
+        if event.save
+          event_participant = EventParticipant.new(user_id: current_user.id, event_id: event.id)
+          event_participant.save
+          render json: event
+        else
+          render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
+        end
       end
-      event.save
-      
       
     else
       render json: { errors: ["you must be logged in to create an event"]}, status: :unauthorized 
