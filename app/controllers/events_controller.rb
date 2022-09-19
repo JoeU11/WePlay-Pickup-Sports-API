@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  # adding comment so that I can push to github
   def index
     if params[:myEvents]
       @events = current_user.events.where('time > ?', DateTime.now).order(:time)
