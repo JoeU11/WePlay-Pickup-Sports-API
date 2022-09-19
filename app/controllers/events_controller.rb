@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
+  # adding comment so that I can push to github
   def index
     if params[:myEvents]
-      @events = current_user.events.where('time > ?', DateTime.now).order(:time).reverse
+      @events = current_user.events.where('time > ?', DateTime.now).order(:time)
       @current_user = current_user
     else
-      @events = Event.all.where('time > ?', DateTime.now).order(:time).reverse
+      @events = Event.all.where('time > ?', DateTime.now).order(:time)
       @current_user = current_user
     end
     render template: "events/index"
