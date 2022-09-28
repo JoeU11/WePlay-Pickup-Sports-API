@@ -1,3 +1,5 @@
+require 'json'
+
 class EventsController < ApplicationController
   def index
     if params[:myEvents]

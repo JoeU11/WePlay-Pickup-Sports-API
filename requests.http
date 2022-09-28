@@ -76,3 +76,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NjIyMjY5N
 
 ###
 delete http://localhost:3000/event_participants/1.json
+

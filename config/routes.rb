@@ -27,4 +27,8 @@ Rails.application.routes.draw do
   get "/event_participants" => "event_participants#index"
   
   delete "/event_participants/:id" => "event_participants#destroy"
+
+# testing OAuth
+  get "/oauth" => "events#test_get_oauth"
+  post "/oauth" => "events#test_post_oauth"
 end

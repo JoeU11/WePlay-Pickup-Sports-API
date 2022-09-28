@@ -17,4 +17,10 @@ class Event < ApplicationRecord
       return nil
     end
   end
+
+  def end_time
+    # returns datetime object one hour after start time
+    event_end_time = time + 3600
+    return event_end_time
+  end
 end

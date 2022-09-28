@@ -3,6 +3,8 @@
   sport: @event.sport,
   location: @event.location,
   time: @event.readable_time,
+  start: @event.time,
+  end: @event.end_time,
   attending: @event.users.include?(@current_user),
   event_participant: @event.get_event_participant(@current_user),
   edit_permission: @current_user == @event.user
