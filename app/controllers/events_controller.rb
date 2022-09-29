@@ -34,6 +34,14 @@ class EventsController < ApplicationController
         event = Event.new(sport_id: params[:sport_id], location_id: params[:location_id], time: time, user_id: current_user.id)
         
         if event.save
+          # testing show estimated number of participants. Migrate to event.rb when working
+          event_coords = Geocoder.search(event.location.address).first.coordinates
+          # find all users that have Availability during event time
+          # find count of above users within 30 miles of event_coords
+          # save count to estimated_participants column of event
+          
+          # end testing
+          
           event_participant = EventParticipant.new(user_id: current_user.id, event_id: event.id)
           event_participant.save
           render json: event

@@ -57,5 +57,7 @@ group :development do
   # gem "spring"
 end
 
+# Add geocoder gem
+gem 'geocoder'
 
 

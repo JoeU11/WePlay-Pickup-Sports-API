@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_26_185528) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_29_183848) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "day"
+    t.string "time_slot"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "event_participants", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_185528) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "estimated_participants"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -49,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_185528) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
   end
 
 end
