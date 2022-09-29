@@ -34,11 +34,40 @@ class EventsController < ApplicationController
         event = Event.new(sport_id: params[:sport_id], location_id: params[:location_id], time: time, user_id: current_user.id)
         
         if event.save
-          # testing show estimated number of participants. Migrate to event.rb when working
+          # testing create estimated number of participants
+          day = event.time.strftime("%A")
+          hour = event.time.strftime("%T").slice(0, 2).to_i
+          p "the hour variable is " + hour.to_s
+          if hour >= 7 && hour <= 12
+            time_slot = "morning"
+          elsif hour > 12 && hour < 17
+            time_slot = "afternoon"
+          elsif hour >= 17 && hour <= 21
+            time_slot = "evening"
+          end
+
           event_coords = Geocoder.search(event.location.address).first.coordinates
           # find all users that have Availability during event time
+          available_users = Availability.all.where(day: "sunday", time_slot: "morning")
+          possible_participants = []
+          available_users.each do |user|
+            possible_participants << user.user
+          end
+
           # find count of above users within 30 miles of event_coords
+          estimated_participants = 0
+          possible_participants.each do |participant|
+            participant_coords = Geocoder.search(participant.location).first.coordinates # replace with user.lat and user.long to minimize API calls
+            distance = Geocoder::Calculations.distance_between(event_coords, participant_coords)
+            if distance < 30
+              estimated_participants += 1
+            end
+          end
           # save count to estimated_participants column of event
+
+          # TODO add participation weight factor - unlikely every available participant will show up
+          event.estimated_participants = estimated_participants
+          event.save
           
           # end testing
           
