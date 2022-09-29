@@ -7,6 +7,7 @@
   end: @event.end_time,
   attending: @event.users.include?(@current_user),
   estimated: @event.estimated_participants,
+  total_going: @event.users.count,
   event_participant: @event.get_event_participant(@current_user),
   edit_permission: @current_user == @event.user
 }
