@@ -38,6 +38,7 @@ class EventsController < ApplicationController
           day = event.time.strftime("%A")
           hour = event.time.strftime("%T").slice(0, 2).to_i
           p "the hour variable is " + hour.to_s
+          p "the day variable is " + day
           if hour >= 7 && hour <= 12
             time_slot = "morning"
           elsif hour > 12 && hour < 17
@@ -48,7 +49,8 @@ class EventsController < ApplicationController
 
           event_coords = Geocoder.search(event.location.address).first.coordinates
           # find all users that have Availability during event time
-          available_users = Availability.all.where(day: "sunday", time_slot: "morning")
+          #TODO test all scenarios
+          available_users = Availability.all.where(day: day, time_slot: time_slot)
           possible_participants = []
           available_users.each do |user|
             possible_participants << user.user
@@ -57,10 +59,12 @@ class EventsController < ApplicationController
           # find count of above users within 30 miles of event_coords
           estimated_participants = 0
           possible_participants.each do |participant|
-            participant_coords = Geocoder.search(participant.location).first.coordinates # replace with user.lat and user.long to minimize API calls
-            distance = Geocoder::Calculations.distance_between(event_coords, participant_coords)
-            if distance < 30
-              estimated_participants += 1
+            if participant.location
+              participant_coords = Geocoder.search(participant.location).first.coordinates # replace with user.lat and user.long to minimize API calls
+              distance = Geocoder::Calculations.distance_between(event_coords, participant_coords)
+              if distance < 30
+                estimated_participants += 1
+              end
             end
           end
           # save count to estimated_participants column of event
