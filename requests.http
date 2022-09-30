@@ -2,10 +2,11 @@ post http://localhost:3000/users.json
 Content-Type: application/json
 
 {
-  "name": "Fred",
-  "email": "fred@fred.com",
+  "name": "Billy",
+  "email": "billy@billy.com",
   "password": "password",
-  "password_confirmation": "password"
+  "password_confirmation": "password",
+  "address": "2 Lincoln Memorial Cir NW, Washington, DC 20002"
 }
 
 ###
