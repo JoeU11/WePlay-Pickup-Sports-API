@@ -80,15 +80,17 @@ class EventsController < ApplicationController
 
   def update
     if current_user 
+      event = Event.find_by(id: params[:id])
       if !params[:time]
         render json: {errors: ["you must select a time"]}, status: :bad_request
       elsif current_user.id == event.user.id
-        event = Event.find_by(id: params[:id])
-        date = params[:time]
-        date = date.chop
-        date = date.tr('-T:.', ',')
-        date = date.split(",")
-        time = DateTime.new(date[0].to_i, date[1].to_i, date[2].to_i, date[3].to_i, date[4].to_i, date[5].to_i, date[6].to_i)
+        if params[:time] == params[:start]
+          date = params[:time]
+          date = date.chop
+          date = date.tr('-T:.', ',')
+          date = date.split(",")
+          time = DateTime.new(date[0].to_i, date[1].to_i, date[2].to_i, date[3].to_i, date[4].to_i, date[5].to_i, date[6].to_i)
+        end
 
         event.sport_id = params[:sport_id] || event.sport_id  
         event.location_id = params[:location_id] || event.location_id  
