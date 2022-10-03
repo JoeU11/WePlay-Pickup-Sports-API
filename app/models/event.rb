@@ -8,7 +8,7 @@ class Event < ApplicationRecord
 
   def readable_time
     # return   time.strftime("%b %e, %l:%M %p")
-    return   time.strftime("%b %e, %l:%M %p %Z")
+    return   time.strftime("%b %e, %Y %l:%M %p %Z")
   end
 
   def get_event_participant(current_user)

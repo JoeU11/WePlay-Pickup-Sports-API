@@ -33,24 +33,14 @@ class EventsController < ApplicationController
         p time
         event = Event.new(sport_id: params[:sport_id], location_id: params[:location_id], time: time, user_id: current_user.id)
         
-        if event.save
-          # testing create estimated number of participants
+        if event.save      
           day = event.time.strftime("%A")
-          hour = event.time.strftime("%T").slice(0, 2).to_i
-          p "the hour variable is " + hour.to_s
-          p "the day variable is " + day
-          if hour >= 7 && hour <= 12
-            time_slot = "morning"
-          elsif hour > 12 && hour < 17
-            time_slot = "afternoon"
-          elsif hour >= 17 && hour <= 21
-            time_slot = "evening"
-          end
 
           event_coords = Geocoder.search(event.location.address).first.coordinates
           # find all users that have Availability during event time
-          #TODO test all scenarios
-          available_users = Availability.all.where(day: day, time_slot: time_slot)
+
+          #TODO add and filter by preferred sport(s)
+          available_users = Availability.all.where(day: day, time_slot: params[:time_slot])
           possible_participants = []
           available_users.each do |user|
             possible_participants << user.user
