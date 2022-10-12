@@ -8,6 +8,15 @@ class UsersController < ApplicationController
       location: params[:location]
     )
     if user.save
+      if params[:location]
+        results = Geocoder.search(params[:location])
+        if results.length > 0
+          coords = results.first.coordinates
+          user.lat = coords[0]
+          user.long = coords[1]
+          user.save
+        end
+      end
       preferred_times = params[:preferredTimes]
       preferred_times.each do |time| 
         availability = Availability.new(user_id: user.id, day: time[:day], time_slot: time[:time_slot]);availability.save 

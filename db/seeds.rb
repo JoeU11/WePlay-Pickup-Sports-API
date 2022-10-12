@@ -9,34 +9,44 @@
 
 # Populates 10 sample users in MD, DC and Northern VA
 
-user = User.new(name: "Jane", email: "jane@jane.com", password: "password", location: "1500 S Capitol St SE, Washington, DC 20003")
+coords = Geocoder.search("1500 S Capitol St SE, Washington, DC 20003").first.coordinates
+user = User.new(name: "Jane", email: "jane@jane.com", password: "password", location: "1500 S Capitol St SE, Washington, DC 20003", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Bob", email: "bob@bob.com", password: "password", location: "333 W Camden St, Baltimore, MD 21201")
+coords = Geocoder.search("333 W Camden St, Baltimore, MD 21201").first.coordinates
+user = User.new(name: "Bob", email: "bob@bob.com", password: "password", location: "333 W Camden St, Baltimore, MD 21201", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Frank", email: "frank@frank.com", password: "password", location: "1101 Russell St, Baltimore, MD 21230")
+coords = Geocoder.search("1101 Russell St, Baltimore, MD 21230").first.coordinates
+user = User.new(name: "Frank", email: "frank@frank.com", password: "password", location: "1101 Russell St, Baltimore, MD 21230", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Nikolai", email: "nick@nickolai.com", password: "password", location: "2400 East Capitol St NE, Washington, DC 20003")
+coords = Geocoder.search("2400 East Capitol St NE, Washington, DC 20003").first.coordinates
+user = User.new(name: "Nikolai", email: "nick@nickolai.com", password: "password", location: "2400 East Capitol St NE, Washington, DC 20003", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Susan", email: "Susan@Susan.com", password: "password", location: "401 Oklahoma Ave NE, Washington, DC 20002")
+coords = Geocoder.search("401 Oklahoma Ave NE, Washington, DC 20002").first.coordinates
+user = User.new(name: "Susan", email: "Susan@Susan.com", password: "password", location: "401 Oklahoma Ave NE, Washington, DC 20002", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Joe", email: "joe@joe.com", password: "password", location: "First St SE, Washington, DC 20004")
+coords = Geocoder.search("First St SE, Washington, DC 20004").first.coordinates
+user = User.new(name: "Joe", email: "joe@joe.com", password: "password", location: "First St SE, Washington, DC 20004", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Mary", email: "Mary@Mary.com", password: "password", location: "14101 Darnestown Rd, Darnestown, MD 20874")
+coords = Geocoder.search("14101 Darnestown Rd, Darnestown, MD 20874").first.coordinates
+user = User.new(name: "Mary", email: "Mary@Mary.com", password: "password", location: "14101 Darnestown Rd, Darnestown, MD 20874", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "William", email: "William@William.com", password: "password", location: "15800 Quince Orchard Rd, Gaithersburg, MD 20878")
+coords = Geocoder.search("15800 Quince Orchard Rd, Gaithersburg, MD 20878").first.coordinates
+user = User.new(name: "William", email: "William@William.com", password: "password", location: "15800 Quince Orchard Rd, Gaithersburg, MD 20878", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Thierry", email: "Thierry@Thierry.com", password: "password", location: "25921 Ridge Rd, Damascus, MD 20872")
+coords = Geocoder.search("25921 Ridge Rd, Damascus, MD 20872").first.coordinates
+user = User.new(name: "Thierry", email: "Thierry@Thierry.com", password: "password", location: "25921 Ridge Rd, Damascus, MD 20872", lat: coords[0], long: coords[1])
 user.save
 
-user = User.new(name: "Cristiano", email: "Cristiano@Christiano.com", password: "password", location: "155 Hillwood Ave, Falls Church, VA 22046")
+coords = Geocoder.search("155 Hillwood Ave, Falls Church, VA 22046").first.coordinates
+user = User.new(name: "Cristiano", email: "Cristiano@Christiano.com", password: "password", location: "155 Hillwood Ave, Falls Church, VA 22046", lat: coords[0], long: coords[1])
 user.save
 
 # Populate User Availabilities (preferred times for playing). Sets all as available sunday morning. First half as available saturday evening, second half as available sunday evening. First two available Friday afternoon
@@ -63,25 +73,32 @@ availability.save
 
 # Populate 7 Sample Locations
 
-location = Location.new(name: "RFK Stadium", address: "2400 East Capitol St NE, Washington, DC 20003")
+coords = Geocoder.search("2400 East Capitol St NE, Washington, DC 20003").first.coordinates
+location = Location.new(name: "RFK Stadium", address: "2400 East Capitol St NE, Washington, DC 20003", lat: coords[0], long: coords[1])
 location.save
 
-location = Location.new(name: "Ludwig Field", address: "7898 Championship Ln, College Park, MD 20740")
+coords = Geocoder.search("7898 Championship Ln, College Park, MD 20740").first.coordinates
+location = Location.new(name: "Ludwig Field", address: "7898 Championship Ln, College Park, MD 20740", lat: coords[0], long: coords[1])
 location.save
 
-location = Location.new(name: "Bonvegna Field", address: "3201 Toone St, Baltimore, MD 21224")
+coords = Geocoder.search("3201 Toone St, Baltimore, MD 21224").first.coordinates
+location = Location.new(name: "Bonvegna Field", address: "3201 Toone St, Baltimore, MD 21224", lat: coords[0], long: coords[1])
 location.save
 
-location = Location.new(name: "Frederick High School", address: "650 Carroll Pkwy, Frederick, MD 21701")
+coords = Geocoder.search("650 Carroll Pkwy, Frederick, MD 21701").first.coordinates
+location = Location.new(name: "Frederick High School", address: "650 Carroll Pkwy, Frederick, MD 21701", lat: coords[0], long: coords[1])
 location.save
 
-location = Location.new(name: "Montgomery County SoccerPlex", address: "18031 Central Park Cir, Boyds, MD 20841")
+coords = Geocoder.search("Schaeffer Rd, Germantown, MD 20874").first.coordinates
+location = Location.new(name: "Montgomery County SoccerPlex", address: "18031 Central Park Cir, Boyds, MD 20841", lat: coords[0], long: coords[1])
 location.save
 
-location = Location.new(name: "Wakefield Park", address: "8100 VA-620, Annandale, VA 22003")
+coords = Geocoder.search("8100 VA-620, Annandale, VA 22003").first.coordinates
+location = Location.new(name: "Wakefield Park", address: "8100 VA-620, Annandale, VA 22003", lat: coords[0], long: coords[1])
 location.save
 
-location = Location.new(name: "Fowler Fields", address: "4202 E Fowler Ave, Tampa, FL 33620")
+coords = Geocoder.search("4202 E Fowler Ave, Tampa, FL 33620").first.coordinates
+location = Location.new(name: "Fowler Fields", address: "4202 E Fowler Ave, Tampa, FL 33620", lat: coords[0], long: coords[1])
 location.save
 
 # Populate Sports - must be in this order. Frontend itentifies by sport ID

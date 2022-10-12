@@ -36,21 +36,22 @@ class EventsController < ApplicationController
         if event.save      
           day = event.time.strftime("%A")
 
-          event_coords = Geocoder.search(event.location.address).first.coordinates
+          event_coords = [event.location.lat, event.location.long]
           # find all users that have Availability during event time
-
-          #TODO add and filter by preferred sport(s)
           available_users = Availability.all.where(day: day, time_slot: params[:time_slot])
+            #TODO add and filter by preferred sport(s)
           possible_participants = []
           available_users.each do |user|
-            possible_participants << user.user
+            if user
+              possible_participants << user.user
+            end
           end
 
           # find count of above users within 30 miles of event_coords
           estimated_participants = 0
           possible_participants.each do |participant|
-            if participant.location
-              participant_coords = Geocoder.search(participant.location).first.coordinates # replace with user.lat and user.long to minimize API calls
+            if participant.lat && participant.long
+              participant_coords = [participant.lat, participant.long]
               distance = Geocoder::Calculations.distance_between(event_coords, participant_coords)
               if distance < 30
                 estimated_participants += 1
@@ -84,7 +85,7 @@ class EventsController < ApplicationController
       if !params[:time]
         render json: {errors: ["you must select a time"]}, status: :bad_request
       elsif current_user.id == event.user.id
-        if params[:time] == params[:start]
+        if params[:time] != params[:start]
           date = params[:time]
           date = date.chop
           date = date.tr('-T:.', ',')

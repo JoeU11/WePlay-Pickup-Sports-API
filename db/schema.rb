@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_29_190923) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_184734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_190923) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "lat", precision: 9, scale: 5
+    t.decimal "long", precision: 9, scale: 5
   end
 
   create_table "sports", force: :cascade do |t|
@@ -59,8 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_190923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
-    t.integer "lat"
-    t.integer "long"
+    t.decimal "lat", precision: 9, scale: 5
+    t.decimal "long", precision: 9, scale: 5
   end
 
 end
