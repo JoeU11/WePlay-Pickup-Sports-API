@@ -17,6 +17,7 @@ class UsersController < ApplicationController
           user.save
         end
       end
+      # TODO - add prefered sport in addition to preferred times
       preferred_times = params[:preferredTimes]
       preferred_times.each do |time| 
         availability = Availability.new(user_id: user.id, day: time[:day], time_slot: time[:time_slot]);availability.save 
